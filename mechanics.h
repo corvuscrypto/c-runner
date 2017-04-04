@@ -12,6 +12,6 @@ typedef struct {
   double scrollSpeed;
 } StateStruct;
 
-extern StateStruct GAME_STATE;
+extern StateStruct gameState;
 
 #endif
