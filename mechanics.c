@@ -7,4 +7,4 @@
 #include "mechanics.h"
 
 //Global game state holder
-StateStruct GAME_STATE;
+StateStruct gameState;
