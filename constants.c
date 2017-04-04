@@ -4,6 +4,8 @@
  * Defines constants that control the universe! (of the game)
  */
 
+#include "constants.h"
+
 const int GAME_HEIGHT = 10;
 const int GAME_BUFFER_LENGTH = 1000;
 const int GAME_MIN_FLOOR_LENGTH = 3;
