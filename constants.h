@@ -12,4 +12,10 @@ extern const int GAME_BUFFER_LENGTH;
 extern const int GAME_MIN_FLOOR_LENGTH;
 extern const int GAME_MAX_GAP_LENGTH;
 
+extern const char GAME_PLAYER;
+extern const char GAME_FLOOR;
+extern const char GAME_AIR;
+
+extern const int GAME_FRAMES_PER_SECOND;
+
 #endif

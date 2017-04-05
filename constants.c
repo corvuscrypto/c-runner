@@ -15,3 +15,6 @@ const int GAME_MAX_GAP_LENGTH = 6;
 const char GAME_PLAYER = '@';
 const char GAME_FLOOR = '=';
 const char GAME_AIR = ' ';
+
+// Rendering constants
+const int GAME_FRAMES_PER_SECOND = 60;
