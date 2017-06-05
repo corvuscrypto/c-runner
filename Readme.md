@@ -95,7 +95,7 @@ void initializeGame() {
 }
 ```
 
-Don't forget to `#import <stdlib.h>` and `#import "constants.h"`. It's important to note that this call to calloc can fail and return NULL as a value. However I'm okay with this for now. The bonus of using calloc is that it initializes the array to 0 in all positions and that corresponds to the floor level of height 0. Convenient! I then place the call to this in my `main()` function. I do this right after the call to `initGameScreen()`. Don't forget to include `mechanics.h` in the `main.c` file.
+Don't forget to `#include <stdlib.h>` and `#include "constants.h"`. It's important to note that this call to calloc can fail and return NULL as a value. However I'm okay with this for now. The bonus of using calloc is that it initializes the array to 0 in all positions and that corresponds to the floor level of height 0. Convenient! I then place the call to this in my `main()` function. I do this right after the call to `initGameScreen()`. Don't forget to include `mechanics.h` in the `main.c` file.
 
 Now for the really fun part; rendering this level of ours. My start on this begins in the `rendering.c` file with a function declaration of `void printLevel()`. I then placed a call to this before the `refresh()`; call in the `render()` function. Inside this new function I simply add characters to the ncurses buffer assuming I have a 2D-array with the number of rows equal to the `GAME_HEIGHT` and the number of columns equal to the screen width. The code I think will explain itself better:
 
@@ -140,7 +140,7 @@ void resizeHandler(int sig) {
 }
 ```
 
-Then before my `printLevel` call I create an if statement that checks for this flag, then clears the screen if it is not 0 before resetting the flag to await the next resize event. It is not enough to just clear the screen, however. We have to also end the current screen and re-initialize it (this loads the new size information so that our `getmaxyx()` call will get the new, correct size). Since I am working with the default global `stdscr`, I can accomplish this with `endwin()` followed by `refresh()`, both placed after a call to `erase()`. To add the signal handler I put the `signal(SIGWINCH, &resizeHandler);` call first in my `initGameScreen()` function.
+Then before my `printLevel` call I create an if statement that checks for this flag, then clears the screen if it is not 0 before resetting the flag to await the next resize event. It is not enough to just clear the screen, however. We have to also end the current screen and re-initialize it (this loads the new size information so that our `getmaxyx()` call will get the new, correct size). Since I am working with the default global `stdscr`, I can accomplish this with `endwin()` followed by `refresh()`, both placed after a call to `erase()`. To add the signal handler I put the `signal(SIGWINCH, &resizeHandler);` call last in my `initGameScreen()` function.
 
 Now when the game compiles I can freely resize it and the window responds appropriately. Just to keep on the same page, here is the way my `render` function looks now:
 
