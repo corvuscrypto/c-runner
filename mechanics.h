@@ -10,8 +10,15 @@
 typedef struct {
   int score;
   double scrollSpeed;
+  int ticksLeftToScroll;
 } StateStruct;
 
+extern int *levelBuffer;
+
 extern StateStruct gameState;
+
+void scrollLevel();
+
+void initializeGame();
 
 #endif

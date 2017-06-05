@@ -11,4 +11,6 @@ void initGameScreen();
 
 unsigned int render();
 
+void endscreen();
+
 #endif
