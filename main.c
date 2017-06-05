@@ -18,8 +18,18 @@ void interruptHandler(int sig) {
 }
 
 unsigned int update() {
+  // Timing start
+  struct timespec startTime, endTime;
+  clock_gettime(CLOCK_MONOTONIC, &startTime);
+  unsigned int usecondsDiff;
+
   scrollLevel();
-  return 0;
+
+  // Timing finish
+  clock_gettime(CLOCK_MONOTONIC, &endTime);
+  usecondsDiff = (endTime.tv_sec - startTime.tv_sec) * 1e6;
+  usecondsDiff += (endTime.tv_nsec - startTime.tv_nsec) / 1000;
+  return usecondsDiff;
 }
 
 void loop() {

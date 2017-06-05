@@ -6,12 +6,13 @@
 
 #include <curses.h>
 #include <signal.h>
+#include <time.h>
 
 #include "constants.h"
 #include "mechanics.h"
 #include "character.h"
 
-sig_atomic_t resized = 0;
+volatile sig_atomic_t resized = 0;
 
 void resizeHandler(int sig) {
   ++resized;
@@ -51,6 +52,11 @@ void initGameScreen() {
 }
 
 unsigned int render() {
+  // Timing start
+  struct timespec startTime, endTime;
+  clock_gettime(CLOCK_MONOTONIC, &startTime);
+  unsigned int usecondsDiff;
+
   if (resized) {
     erase();
     endwin();
@@ -59,5 +65,10 @@ unsigned int render() {
   }
   printLevel();
   refresh();
-  return 0;
+
+  // Timing finish
+  clock_gettime(CLOCK_MONOTONIC, &endTime);
+  usecondsDiff = (endTime.tv_sec - startTime.tv_sec) * 1e6;
+  usecondsDiff += (endTime.tv_nsec - startTime.tv_nsec) / 1000;
+  return usecondsDiff;
 }
