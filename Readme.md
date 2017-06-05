@@ -238,7 +238,7 @@ if (newFloorHeight < 0) {
   }
   // if we got to the end then we need to generate an actual tile
   if (i) {
-    while(!newFloorHeight) {
+    while(newFloorHeight < 0) {
       newFloorHeight = (random() % (maxFloorHeight + 1) - 1);
     }
   }
@@ -273,7 +273,7 @@ int generateNewFloorHeight() {
     }
     // if we got to the end then we need to generate an actual tile
     if (i) {
-      while(!newFloorHeight) {
+      while(newFloorHeight < 0) {
         newFloorHeight = (random() % (maxFloorHeight + 1) - 1);
       }
     }
